@@ -24,10 +24,10 @@ jobs:
           # echo "dolor sit amet" > lorem_2.md
           mkdir output  # create output dir
           # this will also include README.md
-          echo "::set-env name=FILELIST::$(printf '"%s" ' *.md)"
+          # echo "::set-env name=FILELIST::$(printf '"%s" ' *.md)"
       - uses: docker://pandoc/latex:2.9
         with:
-          args: --output=output/result.pdf ${{ env.FILELIST }}
+          args: --output=output/result.pdf README.md
       - uses: actions/upload-artifact@master
         with:
           name: output
