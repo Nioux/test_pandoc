@@ -20,14 +20,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          # echo "Lorem ipsum" > lorem_1.md  # create two example files
-          # echo "dolor sit amet" > lorem_2.md
           mkdir output  # create output dir
-          # this will also include README.md
-          # echo "::set-env name=FILELIST::$(printf '"%s" ' *.md)"
-      - uses: docker://pandoc/latex:2.9
+      - uses: actions/checkout@v2
+        name: tcyrus/homebrewery-standalone
+      - uses: actions/setup-node@v2
         with:
-          args: --output=output/result.pdf README.md
+          node-version: '14'
+      - run: npm install
+      - run: npm run hb -- README.md output/result.pdf
+      #- uses: docker://pandoc/latex:2.9
+        #with:
+          #args: --output=output/result.pdf README.md
       - uses: actions/upload-artifact@main
         with:
           name: myartifact
