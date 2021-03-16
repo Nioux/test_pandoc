@@ -1,3 +1,13 @@
+
+
+
+
+
+
+
+
+
+
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -26,8 +36,8 @@ jobs:
         name: tcyrus/homebrewery-standalone
         with:
           path: homebrewery
-      - run: npm install homebrewery
-      - run: npm run homebrewery/hb -- README.md README.pdf
+      - run: npm install https://github.com/Nioux/homebrewery-standalone
+      - run: npm run hb -- README.md README.pdf
       - uses: actions/upload-artifact@main
         with:
           name: myartifact
