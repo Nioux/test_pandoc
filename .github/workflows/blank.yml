@@ -19,19 +19,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          mkdir output  # create output dir
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
       - uses: actions/checkout@v2
         name: tcyrus/homebrewery-standalone
-      - run: npm install
-      - run: npm run hb -- README.md output/result.pdf
-      #- uses: docker://pandoc/latex:2.9
-        #with:
-          #args: --output=output/result.pdf README.md
+        with:
+          path: homebrewery
+      - run: npm install homebrewery
+      - run: npm run homebrewery/hb -- README.md README.pdf
       - uses: actions/upload-artifact@main
         with:
           name: myartifact
-          path: output/result.pdf
+          path: README.pdf
+
+
+
+
+
+
+
+
+
